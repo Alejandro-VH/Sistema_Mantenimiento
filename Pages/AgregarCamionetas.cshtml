@@ -1,0 +1,14 @@
+﻿@page
+@model MyApp.Namespace.AgregarCamionetasModel
+@{
+}
+
+<h1>Agregar camioneta</h1>
+<form asp-page="AgregarCamionetas" method="post">
+    <p>Patente:<br /><input required type="text" name="patente"></p>
+    <p>Kilometraje:<br /><input required type="text" name="kilometraje"></p>
+    <p>Modelo:<br /><input required type="text" name="modelo"></p>
+    <p>Marca:<br /><input required type="text" name="marca"></p>
+    <p>Año:<br /><input required type="number" name="año"></p>
+    <p><button type="submit" value="Agregar">Agregar</button></p>
+</form>

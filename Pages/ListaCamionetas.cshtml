@@ -1,0 +1,30 @@
+﻿@page
+@model MyApp.Namespace.ListaCamionetasModel
+@{
+}
+
+<h1>Lista camionetas</h1>
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Patente</th>
+        <th>Modelo</th>
+        <th>Marca</th>
+        <th>Año</th>
+        <th>Kilometraje</th>
+        <th>Estado</th>
+    </tr>
+
+    @foreach(Camioneta c in Model.camionetas){
+        <tr>
+            <td>@c.Id</td>
+            <td>@c.Patente</td>
+            <td>@c.Modelo</td>
+            <td>@c.Marca</td>
+            <td>@c.Año</td>
+            <td>@c.Kilometraje</td>
+            <td>@c.Estado</td>
+        </tr>
+    }
+</table>

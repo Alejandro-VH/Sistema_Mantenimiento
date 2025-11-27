@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+option csharp_namespace = "Arriendos.Api";
+
+package arriendos;
+
+// =======================
+// MENSAJES DE ENTIDADES
+// =======================
+
+// Mensaje para Crear/Consultar un Cliente
+message ClienteMessage {
+  string rut = 1;
+  string nombre = 2;
+  string apellido = 3;
+  string email = 4;
+  string telefono = 5;
+  string direccion = 6;
+  // No se incluye 'estado' ni 'id' ya que son internos o tienen un valor por defecto.
+}
+
+// Mensaje para Registrar un Arriendo
+message ArriendoRequest {
+  string rut_cliente = 1;
+  string patente_camioneta = 2;
+  int32 precio_arriendo_id = 3; // Referencia a la tabla precio_arriendo
+  string fecha_inicio = 4; // Usar string para fechas (DateTime en C#)
+  string fecha_fin = 5;
+}
+
+// Mensaje de Respuesta del Registro de Arriendo
+message ArriendoResponse {
+  int32 id_arriendo = 1;
+  string mensaje = 2;
+  double total_a_pagar = 3;
+}
+
+// Mensaje para la gestión de Precios
+message PrecioArriendoMessage {
+  int32 id = 1;
+  string tipo = 2;
+  double precio_diario = 3;
+}
+
+// Mensaje de confirmación simple
+message SimpleResponse {
+    bool exito = 1;
+    string mensaje = 2;
+}
+
+// =======================
+// DEFINICIÓN DEL SERVICIO
+// =======================
+service ArriendosService {
+  // Mantenimiento de Clientes
+  rpc CrearCliente(ClienteMessage) returns (ClienteMessage);
+  rpc GetClientePorRut(ArriendoRequest) returns (ClienteMessage);
+  
+  // Gestión de Precios
+  rpc GetPrecioPorId(PrecioArriendoMessage) returns (PrecioArriendoMessage);
+  
+  // Registrar Arriendo (Comunicación inter-servicio: Llama a API Mantenciones)
+  rpc RegistrarArriendo(ArriendoRequest) returns (ArriendoResponse);
+}

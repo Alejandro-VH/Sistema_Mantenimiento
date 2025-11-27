@@ -1,0 +1,17 @@
+﻿@page
+@model MyApp.Namespace.IngresarMantenimientoModel
+@{
+}
+
+<h1>Ingresar camioneta a mantenimiento</h1>
+<form asp-page="ReintegroCamionetas" method="post">
+    <p>Camioneta:<br />
+        <select name="Id">
+            @foreach(Camioneta c in Model.camionetas){
+                <option value="@c.Id">@c.Patente (@c.Marca @c.Modelo)</option>
+            }      
+        </select>
+    </p>
+    <p>Acción:<br /><input required type="text" name="accion"></p>
+    <p><button type="submit" value="Agregar">Agregar a mantenimiento</button></p>
+</form>

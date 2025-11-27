@@ -1,0 +1,24 @@
+﻿@page
+@model MyApp.Namespace.VerHistorialModel
+@{
+}
+
+<h1>Historial de Mantenimientos</h1>
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Patente</th>
+        <th>Acción</th>
+        <th>Fecha</th>
+    </tr>
+
+    @foreach (HistorialMantencion h in Model.historial){
+        <tr>
+            <td>@h.Id</td>
+            <td>@h.Patente</td>
+            <td>@h.Accion</td>
+            <td>@h.Fecha</td>
+        </tr>
+    }
+</table>
